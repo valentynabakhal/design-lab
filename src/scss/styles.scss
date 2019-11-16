@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+@import 'normalize';
+@import 'mixins';
+
+$text-color: #3c3c3c;
+$accent-color:#866b7f;
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 10px;
+    scroll-behavior: smooth;
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
+}
+
+body {
+    min-height: 100%;
+    font: 300 1.4rem/1.8 'Lato', sans-serif;
+    color: $text-color;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 900px;
+    width: 96%;
+}
+
+h1 {
+    font-size: 5.4rem;
+    @media screen and (max-width: 768px) {
+        font-size: 3.4rem;
+}
+@media screen and (max-width: 320px) {
+    font-size: 2.8rem;
+}
+}
+
+h2 {
+    font-size: 3.4rem;
+    @media screen and (max-width: 768px) {
+        font-size: 2.4rem;
+}
+}
+
+header {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.section {
+    padding: 100px 0;
+    text-align: center;
+    @media screen and (max-width: 320px) {
+        padding: 50px 0;
+    }
+
+    &--bg {
+        color: #ffffff;
+        background-color: #afbad0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &__wrap {
+        padding: 20px 180px;
+        @media screen and (max-width: 1024px) {
+            padding: 20px 80px;
+        }
+        @media screen and (max-width: 576px) {
+            padding: 20px;
+        }
+        &--bordered {
+            border: 2px solid $text-color;
+            border-top: none;
+            position: relative;
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                width: 25%;
+                display: inline-block;
+                border-top: 2px solid $text-color;
+                @media screen and (max-width: 576px) {
+                    width: 10%;;
+                }
+            }
+            &:before {
+                left: 0;
+            }
+            &:after {
+                right: 0;
+            }
+    
+            .section--bg & {
+                border-color: #fff;
+                &:before,
+                &:after {
+                    border-color: #fff;
+                }
+            }
+        }
+    }
+
+    &__title {
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+
+        .section__wrap--bordered &:first-child {
+            max-width: 70%;
+            position: relative;
+            transform: translate(0, -100%);
+            margin: 0 auto;
+            @media screen and (max-width: 576px) {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &__subtitle {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 1.5rem;
+        @media screen and (max-width: 576px) {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__scroll {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: 60px;
+        @media screen and (max-width: 320px) {
+            bottom: 10px;
+        }
+        svg {
+            fill: #fff;
+            @include tr();
+        }
+        @include hover {
+            svg {
+                fill: $accent-color;
+            }
+        }
+    }
+
+    &__item {
+        padding: 50px 0;
+        @media screen and (max-width: 320px) {
+            padding: 20px 0;
+        }
+    }
+}
+
+.works {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 30% 39% 30%;
+    grid-gap: 1.5% .5%;
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1.5%;
+    }
+}
+
+.work {
+    @media screen and (max-width: 768px) {
+        margin-bottom: 10px;
+    }
+    &__link {
+        display: block;
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        @include hover {
+            .work__img {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+    }
+
+    &__img {
+        @include posCenter;
+        min-width: 100%;
+        min-height: 100%;
+        @include tr();  
+    }
+    &__title {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        text-align: left;
+        @include text (#fff, 'Lato', 3.4rem, 700, 1);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+    }
+}
+
+.btn {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    @include text (#fff, 'Lato', 1.6rem, 400, 1);
+    letter-spacing: 5px;
+    background: $text-color;
+    padding: 20px;
+    width: 65%;
+    border: 2px solid $text-color;
+    @include hover {
+        background: #fff;
+        color: $text-color;
+    }
+    @media screen and (max-width: 320px) {
+        font-size: 1rem;
+    }
+}
+
+.copyright {
+    padding: 60px 0 0 0;
+    svg, span {
+        vertical-align: middle;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid transparent;
+        @include hover {
+            color: $accent-color;
+            border-color: $accent-color;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        span {
+            display: block;
+        }
+    } 
+}
+
+.logo {
+    fill: #fff;
+    stroke: #fff;
+
+    .copyright & {
+        fill: $text-color;
+        stroke: $text-color;
+        margin-right: 35px;
+        @media screen and (max-width: 320px) {
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+}
